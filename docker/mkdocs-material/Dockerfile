@@ -1,8 +1,8 @@
 FROM squidfunk/mkdocs-material
 
 RUN pip install mkdocs_puml
-
 RUN pip install mkdocs-render-swagger-plugin
+RUN pip install mkdocs-drawio
 
 WORKDIR /docs
 
