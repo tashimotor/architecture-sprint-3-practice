@@ -1,0 +1,10 @@
+services:
+  mkdocs-material:
+    build:
+      context:
+        docker/mkdocs-material
+    volumes:
+      - ./docs:/docs/docs
+      - ./mkdocs.yml:/docs/mkdocs.yml
+    ports:
+      - "8014:8000"

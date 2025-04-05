@@ -1,0 +1,9 @@
+site_name: FitLife Documentation
+theme: readthedocs
+markdown_extensions:
+  - md_in_html
+plugins:
+  - search
+  - render_swagger
+  - plantuml:
+      puml_url: https://www.plantuml.com/plantuml/
