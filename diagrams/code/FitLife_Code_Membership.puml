@@ -18,6 +18,7 @@ class Membership {
   +Date startDate
   +Date endDate
   +void activate()
+  +void deactivate()
   +void cancel()
 }
 
