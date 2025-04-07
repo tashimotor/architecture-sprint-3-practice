@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deliveryservice
+  labels:
+    app: deliveryservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deliveryservice
+  template:
+    metadata:
+      labels:
+        app: deliveryservice
+    spec:
+      containers:
+        - name: deliveryservice
+          image: quickdelivery/deliveryservice:latest
+          ports:
+            - containerPort: 8080
+
