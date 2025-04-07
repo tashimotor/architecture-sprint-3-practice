@@ -124,9 +124,44 @@ services:
       # KONG_LICENSE_DATA: '{"license":{"...":...}}'
     networks:
       - kong-net
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_sandbox
+    hostname: jenkins
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - ${JENKINS_HOME_PATH}:/var/jenkins_home
+      - ./data/jenkins/scripts:/var/jenkins_home/scripts
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    hostname: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./data/prometheus/data:/prometheus
+      - ./data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
 
 volumes:
   kong-db-data:
+  prometheus-data:
+  grafana-data:
 
 networks:
   kong-net:
