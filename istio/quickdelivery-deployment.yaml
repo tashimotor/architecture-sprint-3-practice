@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quickdelivery-service
+  labels:
+    app: quickdelivery
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quickdelivery
+  template:
+    metadata:
+      labels:
+        app: quickdelivery
+    spec:
+      containers:
+        - name: quickdelivery
+          image: quickdelivery:latest
+          ports:
+            - containerPort: 80
+
